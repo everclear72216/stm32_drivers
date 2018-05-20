@@ -1,14 +1,20 @@
 [package]
-name = "stm32-drivers"
+name = "stm32_drivers"
 version = "0.1.0"
 authors = ["Martin Bertsche <martin72216@googlemail.com>"]
 
 [lib]
-name = "stm32-drivers"
+name = "stm32_drivers"
 path = "src/lib.rs"
 
-[[bin]]
-name = "stm32-drivertest"
-path = "src/bin.rs"
+[dependencies.cortex-m]
+version = "^0.5.0"
 
-[dependencies]
+[dependencies.cortex-m-rt]
+version = "^0.5.0"
+
+[dependencies.cortex-m-semihosting]
+version = "^0.3.0"
+
+[dependencies.panic-semihosting]
+version = "^0.2.0"
