@@ -1,0 +1,6 @@
+[package]
+name = "stm32-drivers"
+version = "0.1.0"
+authors = ["Martin Bertsche <martin72216@googlemail.com>"]
+
+[dependencies]
