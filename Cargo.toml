@@ -3,18 +3,18 @@ name = "stm32_drivers"
 version = "0.1.0"
 authors = ["Martin Bertsche <martin72216@googlemail.com>"]
 
-[lib]
-name = "stm32_drivers"
-path = "src/lib.rs"
+[[bin]]
+name = "stm32_rcc_test"
+path = "src/bin/stm32_rcc_test.rs"
 
 [dependencies.cortex-m]
-version = "^0.5.0"
+version = "0.5.2"
 
 [dependencies.cortex-m-rt]
-version = "^0.5.0"
+version = "0.5.1"
 
 [dependencies.cortex-m-semihosting]
-version = "^0.3.0"
+version = "0.3.0"
 
 [dependencies.panic-semihosting]
-version = "^0.2.0"
+version = "0.2.0"
