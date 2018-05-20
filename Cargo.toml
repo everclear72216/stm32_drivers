@@ -3,4 +3,12 @@ name = "stm32-drivers"
 version = "0.1.0"
 authors = ["Martin Bertsche <martin72216@googlemail.com>"]
 
+[lib]
+name = "stm32-drivers"
+path = "src/lib.rs"
+
+[[bin]]
+name = "stm32-drivertest"
+path = "src/bin.rs"
+
 [dependencies]
