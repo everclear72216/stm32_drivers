@@ -17,4 +17,5 @@ version = "0.2.0"
 
 [dependencies.stm32f429]
 path = "../stm32f429"
+feature = ["rt"]
 version = "0.1.0"

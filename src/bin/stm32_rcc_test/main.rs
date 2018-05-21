@@ -2,6 +2,8 @@
 #![no_main]
 #![no_std]
 
+extern crate stm32f429;
+
 #[macro_use]
 extern crate cortex_m_rt;
 extern crate cortex_m_semihosting;
