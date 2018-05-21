@@ -14,6 +14,3 @@ version = "0.3.0"
 
 [dependencies.panic-semihosting]
 version = "0.2.0"
-
-[dependencies.stm32f429]
-version = "0.4.0"
