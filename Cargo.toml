@@ -1,21 +1,5 @@
+
 [package]
 name = "stm32_drivers"
 version = "0.1.0"
 authors = ["Martin Bertsche <martin72216@googlemail.com>"]
-
-[dependencies.cortex-m]
-version = "0.5.2"
-
-[dependencies.cortex-m-rt]
-version = "0.5.1"
-
-[dependencies.cortex-m-semihosting]
-version = "0.3.0"
-
-[dependencies.panic-semihosting]
-version = "0.2.0"
-
-[dependencies.stm32f429]
-path = "../stm32f429"
-features = ["rt"]
-version = "0.1.0"
