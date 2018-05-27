@@ -1,4 +1,3 @@
-
 #![no_std]
 #![feature(const_fn)]
 

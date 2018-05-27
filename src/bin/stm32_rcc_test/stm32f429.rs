@@ -1,11 +1,8 @@
-
 use stm32_drivers::rcc::HasRcc;
 
-
 #[derive(Default)]
-pub struct Stm32F429 { }
+pub struct Stm32F429 {}
 
 impl HasRcc for Stm32F429 {
-
     const RCC: u32 = 0x4002_3800u32;
 }

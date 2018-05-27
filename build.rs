@@ -1,21 +1,14 @@
-
-use std::fs;
 use std::env;
+use std::fs;
 use std::path::PathBuf;
 
 fn main() {
-
-    let link_files = vec![
-        "link/link.x",
-        "link/memory.x",
-        "link/device.x",
-    ];
+    let link_files = vec!["link/link.x", "link/memory.x", "link/device.x"];
 
     let out_dir = env::var_os("OUT_DIR").unwrap();
     let out_dir = PathBuf::from(out_dir);
 
     for file_path in link_files {
-        
         {
             let file_path = PathBuf::from(file_path);
             let file_name = file_path.file_name().unwrap();

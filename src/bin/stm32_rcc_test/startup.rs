@@ -1,6 +1,5 @@
-
-use core::ptr;
 use core::mem;
+use core::ptr;
 
 #[no_mangle]
 #[link_section = ".vector_table.reset_vector"]
@@ -9,7 +8,6 @@ pub static __RESET_VECTOR: unsafe extern "C" fn() -> ! = reset_handler;
 #[no_mangle]
 #[export_name = "reset_handler"]
 pub unsafe extern "C" fn reset_handler() -> ! {
-
     extern "C" {
 
         fn main() -> !;
@@ -26,7 +24,6 @@ pub unsafe extern "C" fn reset_handler() -> ! {
 
     #[inline(never)]
     unsafe fn system_init_trampoline() -> () {
-
         system_init();
     }
 
@@ -38,7 +35,6 @@ pub unsafe extern "C" fn reset_handler() -> ! {
         let ebss: *mut u32 = &mut __ebss;
 
         while sbss < ebss {
-
             ptr::write_volatile(sbss, mem::zeroed());
             sbss = sbss.offset(1);
         }
@@ -51,7 +47,6 @@ pub unsafe extern "C" fn reset_handler() -> ! {
         let mut sidata: *mut u32 = &mut __sidata;
 
         while sdata < edata {
-
             ptr::write(sdata, ptr::read(sidata));
             sdata = sdata.offset(1);
             sidata = sidata.offset(1);
@@ -60,7 +55,6 @@ pub unsafe extern "C" fn reset_handler() -> ! {
 
     #[inline(never)]
     unsafe fn main_trampoline() -> ! {
-
         main();
     }
 
