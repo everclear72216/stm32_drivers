@@ -1,7 +1,5 @@
 
 
-use core::default::Default;
-
 use stm32f429::Stm32F429;
 
 use stm32_drivers::rcc::Rcc;
@@ -10,7 +8,7 @@ use stm32_drivers::rcc::Rcc;
 #[export_name = "system_init"]
 pub unsafe extern "C" fn system_init() {
 
-    let mut rcc: Rcc<Stm32F429> = Default::default();
+    let mut rcc: Rcc<Stm32F429> = Rcc::<Stm32F429>::new();
 
     rcc.cr.set(|v| v | 0x0000_0001);
     rcc.cfgr.set(|_v| 0x0000_0000);
