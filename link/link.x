@@ -23,8 +23,8 @@
 INCLUDE memory.x
 
 /* # Entry point = reset vector */
-ENTRY(Reset);
-EXTERN(__RESET_VECTOR); /* depends on the `Reset` symbol */
+ENTRY(reset_handler);
+EXTERN(__RESET_VECTOR); /* depends on the `reset_handler` symbol */
 
 /* # Exception vectors */
 /* This is effectively weak aliasing at the linker level */
@@ -32,21 +32,21 @@ EXTERN(__RESET_VECTOR); /* depends on the `Reset` symbol */
    the `exception!` macro) */
 EXTERN(__EXCEPTIONS); /* depends on all the these PROVIDED symbols */
 
-EXTERN(DefaultHandler);
+EXTERN(default_handler);
 
-PROVIDE(NonMaskableInt = DefaultHandler);
-PROVIDE(HardFault = DefaultHandler);
-PROVIDE(MemoryManagement = DefaultHandler);
-PROVIDE(BusFault = DefaultHandler);
-PROVIDE(UsageFault = DefaultHandler);
-PROVIDE(SecureFault = DefaultHandler);
-PROVIDE(SVCall = DefaultHandler);
-PROVIDE(DebugMonitor = DefaultHandler);
-PROVIDE(PendSV = DefaultHandler);
-PROVIDE(SysTick = DefaultHandler);
+PROVIDE(nmi_handler = default_handler);
+PROVIDE(hard_fault_handler = default_handler);
+PROVIDE(memory_management_handler = default_handler);
+PROVIDE(bus_fault_handler = default_handler);
+PROVIDE(usage_fault_handler = default_handler);
+PROVIDE(secure_fault_handler = default_handler);
+PROVIDE(svcall_handler = default_handler);
+PROVIDE(debug_monitor_handler = default_handler);
+PROVIDE(pendsv_handler = default_handler);
+PROVIDE(sys_tick_handler = default_handler);
 
 /* Provides weak aliases (cf. PROVIDED) for device specific interrupt handlers */
-INCLUDE device.x"
+/* INCLUDE device.x" */
 
 /* # Interrupt vectors */
 EXTERN(__INTERRUPTS); /* `static` variable similar to `__EXCEPTIONS` */

@@ -15,6 +15,7 @@ fn main() {
     let out_dir = PathBuf::from(out_dir);
 
     for file_path in link_files {
+        
         {
             let file_path = PathBuf::from(file_path);
             let file_name = file_path.file_name().unwrap();
@@ -26,6 +27,7 @@ fn main() {
         println!("cargo:rerun-if-changed={}", file_path);
     }
 
+    println!("cargo:rustc-link-search={}", out_dir.display());
     println!("cargo:rerun-if-changed=build.rs");
 
     ()

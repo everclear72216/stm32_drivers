@@ -1,10 +1,21 @@
 
-#![no_main]
 #![no_std]
+#![no_main]
+#![feature(lang_items)]
 
-pub mod exceptions;
+mod lang;
+mod startup;
+mod exceptions;
+mod system_init;
 
-fn main() -> ! {
+pub use startup::reset_handler;
+pub use system_init::system_init;
+
+pub use exceptions::default_handler;
+
+#[no_mangle]
+#[export_name = "main"]
+pub unsafe extern "C" fn main() -> ! {
 
     loop { }
 }
