@@ -1,6 +1,6 @@
 
 shell killall JLinkGDBServer
-shell JLinkGDBServer -USB -device STM32F429ZI -endian little -if SWD -speed auto -ir -LocalhostOnly&
+shell JLinkGDBServer -USB -device STM32F429ZI -endian little -if SWD -speed auto -ir -LocalhostOnly -quiet&
 
 target remote :2331
 
@@ -10,6 +10,16 @@ set print asm-demangle on
 # compatibility for SEGGER JLinkGDBServer
 monitor semihosting enable
 monitor semihosting IOClient 2
+
+define n
+	next
+	refresh
+end
+
+define s
+	step
+	refresh
+end
 
 # # send captured ITM to the file itm.fifo
 # # (the microcontroller SWO pin must be connected to the programmer SWO pin)
@@ -32,3 +42,5 @@ monitor reset
 monitor halt
 
 break system_init
+
+refresh
