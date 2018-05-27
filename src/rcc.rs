@@ -1,7 +1,12 @@
 
+use core::marker::PhantomData;
 use core::ops::{Deref, DerefMut};
 
 use register::ReadWriteRegister;
+
+pub trait HasRcc {
+    const RCC: u32;
+}
 
 #[repr(C)]
 pub struct Registers {
@@ -39,41 +44,49 @@ pub struct Registers {
     pub dckcfgr:    ReadWriteRegister<u32>,
 }
 
-pub struct Rcc { }
+#[derive(Default)]
+pub struct Rcc<T>
+    where T: HasRcc
+{
+    pub _marker: PhantomData<T>,
+}
 
-impl Rcc {
+impl<T> Rcc<T> 
+    where T: HasRcc
+{
+    fn ptr() -> *const Registers {
 
-    pub fn ptr() -> *const Registers {
-
-        0x4002_3800 as *const _
+        T::RCC as *const _
     }
 
-    pub fn mut_ptr() -> *mut Registers {
+    fn mut_ptr() -> *mut Registers {
 
-        0x4002_3800 as *mut _
+        T::RCC as *mut _
     }
 }
 
-impl Deref for Rcc {
-
+impl<T> Deref for Rcc<T>
+    where T: HasRcc
+{
     type Target = Registers;
 
     fn deref(&self) -> &Registers {
 
         unsafe {
 
-            &*Rcc::ptr()
+            &*Rcc::<T>::ptr()
         }
     }
 }
 
-impl DerefMut for Rcc {
-
+impl<T> DerefMut for Rcc<T>
+    where T: HasRcc
+{
     fn deref_mut(&mut self) -> &mut Registers {
 
         unsafe {
 
-            &mut *Rcc::mut_ptr()
+            &mut *Rcc::<T>::mut_ptr()
         }
     }
 }

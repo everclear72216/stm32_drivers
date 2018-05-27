@@ -5,14 +5,31 @@ pub union ExceptionVector {
 }
 
 extern "C" {
+    #[allow(dead_code)]
     fn nmi_handler();
+
+    #[allow(dead_code)]
     fn hard_fault_handler();
+
+    #[allow(dead_code)]
     fn memory_management_handler();
+
+    #[allow(dead_code)]
     fn bus_fault_handler();
+
+    #[allow(dead_code)]
     fn usage_fault_handler();
+
+    #[allow(dead_code)]
     fn svcall_handler();
+
+    #[allow(dead_code)]
     fn debug_monitor_handler();
+
+    #[allow(dead_code)]
     fn pendsv_handler();
+
+    #[allow(dead_code)]
     fn sys_tick_handler();
 }
 
