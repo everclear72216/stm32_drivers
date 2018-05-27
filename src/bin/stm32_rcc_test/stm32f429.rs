@@ -1,4 +1,4 @@
-use stm32_drivers::rcc::HasRcc;
+use stm32_drivers::rcc::traits::HasRcc;
 
 #[derive(Default)]
 pub struct Stm32F429 {}

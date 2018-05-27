@@ -1,11 +1,11 @@
 
 
 use core::marker::PhantomData;
-
 use core::ops::Deref;
 use core::ops::DerefMut;
 
-use registers::Registers;
+use rcc::regs::Registers;
+use rcc::traits::HasRcc;
 
 pub struct Rcc<T>
 where
