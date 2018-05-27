@@ -1,26 +1,49 @@
 
 use core::ptr;
 
-pub struct RO<T> {
+#[repr(C)]
+pub struct ReadOnlyRegister<T> {
 
     value: T,
 }
 
-pub struct RW<T> {
-
-    value: T,
-}
-
-pub struct WO<T> {
+#[repr(C)]
+pub struct WriteOnlyRegister<T> {
     
     value: T,
 }
 
-impl<T> RO<T> {
+#[repr(C)]
+pub struct ReadWriteRegister<T> {
 
-    pub unsafe fn get(&self) -> T
-        where T: Copy
-    {
+    value: T,
+}
+
+impl<T> ReadOnlyRegister<T> {
+
+    pub unsafe fn get(&self) -> T {
+
         ptr::read_volatile(&self.value)
+    }
+}
+
+impl<T> WriteOnlyRegister<T> {
+
+    pub unsafe fn set(&mut self, value: T) -> () {
+
+        ptr::write_volatile(&mut self.value, value);
+    }
+}
+
+impl<T> ReadWriteRegister<T> {
+
+    pub unsafe fn get(&self) -> T {
+
+        ptr::read_volatile(&self.value)
+    }
+
+    pub unsafe fn set(&mut self, setter: fn(value: T) -> T) -> () {
+
+        ptr::write_volatile(&mut self.value, setter(self.get()));
     }
 }

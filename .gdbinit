@@ -27,4 +27,8 @@ monitor reset
 monitor halt
 
 load
-step
+
+monitor reset
+monitor halt
+
+break system_init

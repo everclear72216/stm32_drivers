@@ -3,6 +3,8 @@
 #![no_main]
 #![feature(lang_items)]
 
+extern crate stm32_drivers;
+
 mod lang;
 mod startup;
 mod exceptions;

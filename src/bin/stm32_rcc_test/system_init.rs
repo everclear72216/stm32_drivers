@@ -1,8 +1,18 @@
 
+use stm32_drivers::rcc::Rcc;
+
 #[no_mangle]
 #[export_name = "system_init"]
 pub unsafe extern "C" fn system_init() {
 
+    let mut rcc = Rcc {};
+
+    rcc.cr.set(|v| v | 0x0000_0001);
+    rcc.cfgr.set(|_v| 0x0000_0000);
+    rcc.cr.set(|v| v & 0xFEF6_FFFF);
+    rcc.pllcfgr.set(|_v| 0x2400_3010);
+    rcc.cr.set(|v| v & 0xFFFB_FFFF);
+    rcc.cir.set(|_v| 0x0000_0000);
 }
 
 unsafe fn set_system_clock() -> () {
