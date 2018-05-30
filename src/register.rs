@@ -1,3 +1,4 @@
+
 use core::ptr;
 
 #[repr(C)]
@@ -18,6 +19,14 @@ pub struct ReadWriteRegister<T> {
 impl<T> ReadOnlyRegister<T> {
     pub unsafe fn get(&self) -> T {
         ptr::read_volatile(&self.value)
+    }
+
+    pub unsafe fn get_bit(&self, u8 index) {
+
+    }
+
+    pub unsafe fn get_field(&self, T mask, u8 index) {
+
     }
 }
 
