@@ -1,16 +1,13 @@
-use rcc::regs::Rcc;
-use rcc::traits::HasRcc;
-
 pub struct Driver<T>
 where
     T: HasRcc,
 {
-    rcc: Rcc<T>,
+    rcc: ::rcc::regs::Rcc<T>,
 }
 
 impl<T> Driver<T>
 where
-    T: HasRcc,
+    T: rcc::traits::HasRcc + bitbanding::traits::PeripheralBitbanding,
 {
     pub unsafe fn new() -> Driver<T> {
         Driver {

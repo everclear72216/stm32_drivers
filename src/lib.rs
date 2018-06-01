@@ -1,5 +1,7 @@
 #![no_std]
 #![feature(const_fn)]
 
-pub mod rcc;
+pub mod bitbanding;
 pub mod register;
+
+pub mod rcc;
