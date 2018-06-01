@@ -18,7 +18,5 @@ where
         }
     }
 
-    pub unsafe fn deinit(&mut self) -> () {
-
-    }
+    pub unsafe fn deinit(&mut self) -> () {}
 }
