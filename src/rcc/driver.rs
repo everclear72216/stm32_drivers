@@ -1,4 +1,4 @@
-use rcc::ll::Rcc;
+use rcc::regs::Rcc;
 use rcc::traits::HasRcc;
 
 pub struct Driver<T>
