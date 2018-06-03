@@ -1,13 +1,19 @@
 use stm32_drivers::rcc::driver::Driver;
-use stm32f429::Stm32F429;
+use stm32_drivers::rcc::traits::ClockKind;
+use stm32_drivers::rcc::traits::ExternalClock;
+use stm32_drivers::rcc::traits::SystemClock;
+
+use stm32_drivers::parts::stm32::f4::stm32f429::Stm32F429;
 
 #[no_mangle]
 #[export_name = "system_init"]
 pub unsafe extern "C" fn system_init() {
     let mut rcc = Driver::<Stm32F429>::new();
-    rcc.deinit();
+    let clock = ClockKind::Hse(ExternalClock {
+        ext_clock_frequency: 8_000_000,
+        core_clock_frequency: 180_000_000,
+    });
 
-    set_system_clock();
+    rcc.system_clock_deinit();
+    rcc.system_clock_init(&clock);
 }
-
-unsafe fn set_system_clock() -> () {}

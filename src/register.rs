@@ -23,6 +23,10 @@ where
         + ::core::ops::Shr<T, Output = T>
         + ::core::cmp::PartialOrd,
 {
+    pub unsafe fn get_addr(&self) -> u32 {
+        (self as *const ReadOnlyRegister<T>) as u32
+    }
+
     pub unsafe fn get(&self) -> T {
         ptr::read_volatile(&self.value)
     }
@@ -43,6 +47,10 @@ where
         + ::core::ops::Shr<T, Output = T>
         + ::core::ops::Not<Output = T>,
 {
+    pub unsafe fn get_addr(&mut self) -> u32 {
+        (self as *mut WriteOnlyRegister<T>) as u32
+    }
+
     pub unsafe fn set(&mut self, value: T) -> () {
         ptr::write_volatile(&mut self.value, value);
     }
@@ -74,6 +82,10 @@ where
         + ::core::ops::Not<Output = T>
         + ::core::cmp::PartialOrd,
 {
+    pub unsafe fn get_addr(&mut self) -> u32 {
+        (self as *mut ReadWriteRegister<T>) as u32
+    }
+
     pub unsafe fn get(&self) -> T {
         ptr::read_volatile(&self.value)
     }

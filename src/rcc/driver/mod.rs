@@ -1,5 +1,4 @@
-use models::Stm32F427xx;
-use models::Stm32F429xx;
+mod stm32f429;
 
 use rcc::regs::Rcc as RccReg;
 use rcc::traits::Rcc as RccTrait;

@@ -7,9 +7,9 @@ extern crate stm32_drivers;
 mod exceptions;
 mod lang;
 mod startup;
-mod stm32f429;
 mod system_init;
 
+pub use lang::panic_fmt;
 pub use startup::reset_handler;
 pub use startup::__RESET_VECTOR;
 pub use system_init::system_init;
