@@ -14,7 +14,7 @@ where
     const SET_VALUE: u32 = 0x0000_0001;
     const CLEAR_VALUE: u32 = 0x0000_0000;
 
-    pub fn get_bb_address(bitband_start: u32, alias_start: u32, address: u32, index: u8) -> u32 {
+    fn get_bb_address(bitband_start: u32, alias_start: u32, address: u32, index: u8) -> u32 {
         alias_start
             + ((index as u32) << Driver::<T>::BYTES_PER_BIT)
             + ((address - bitband_start) << Driver::<T>::BYTES_PER_BYTE)

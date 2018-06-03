@@ -1,3 +1,3 @@
-pub trait HasRcc {
+pub trait Rcc {
     const RCC: u32;
 }

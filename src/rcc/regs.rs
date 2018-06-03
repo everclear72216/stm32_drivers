@@ -2,7 +2,7 @@ use core::marker::PhantomData;
 use core::ops::Deref;
 use core::ops::DerefMut;
 
-use rcc::traits::HasRcc;
+use rcc::traits::Rcc as RccTrait;
 
 use register::ReadWriteRegister;
 
@@ -44,14 +44,14 @@ pub struct Registers {
 
 pub struct Rcc<T>
 where
-    T: HasRcc,
+    T: RccTrait,
 {
     _marker: PhantomData<T>,
 }
 
 impl<T> Rcc<T>
 where
-    T: HasRcc,
+    T: RccTrait,
 {
     pub fn new() -> Rcc<T> {
         Rcc::<T> {
@@ -70,7 +70,7 @@ where
 
 impl<T> Deref for Rcc<T>
 where
-    T: HasRcc,
+    T: RccTrait,
 {
     type Target = Registers;
 
@@ -81,7 +81,7 @@ where
 
 impl<T> DerefMut for Rcc<T>
 where
-    T: HasRcc,
+    T: RccTrait,
 {
     fn deref_mut(&mut self) -> &mut Registers {
         unsafe { &mut *Rcc::<T>::mut_ptr() }
