@@ -23,17 +23,3 @@ where
         }
     }
 }
-
-impl<T> Driver<T>
-where
-    T: RccTrait + PeripheralBitbanding + Stm32F429xx
-{
-    pub unsafe fn deinit(&mut self) -> () {}
-}
-
-impl<T> Driver<T>
-where
-    T: RccTrait + PeripheralBitbanding + Stm32F427xx
-{
-    pub unsafe fn deinit(&mut self) -> () {}
-}

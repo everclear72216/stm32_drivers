@@ -1,7 +1,7 @@
-use stm32_drivers::rcc::traits::Rcc;
+use rcc::traits::Rcc;
 
-use stm32_drivers::bitbanding::range::Range;
-use stm32_drivers::bitbanding::traits::PeripheralBitbanding;
+use bitbanding::range::Range;
+use bitbanding::traits::PeripheralBitbanding;
 
 pub struct Stm32F429 {}
 
