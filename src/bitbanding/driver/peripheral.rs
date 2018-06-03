@@ -9,15 +9,15 @@ impl<T> Driver<T>
 where
     T: ::bitbanding::traits::PeripheralBitbanding,
 {
-    const BYTES_PER_BIT: u32 = 4;
-    const BYTES_PER_BYTE: u32 = 32;
+    const BIT_SHIFT: u32 = 2;
+    const BYTE_SHIFT: u32 = 5;
     const SET_VALUE: u32 = 0x0000_0001;
     const CLEAR_VALUE: u32 = 0x0000_0000;
 
     fn get_bb_address(bitband_start: u32, alias_start: u32, address: u32, index: u8) -> u32 {
         alias_start
-            + ((index as u32) << Driver::<T>::BYTES_PER_BIT)
-            + ((address - bitband_start) << Driver::<T>::BYTES_PER_BYTE)
+            + ((index as u32) << Driver::<T>::BIT_SHIFT)
+            + ((address - bitband_start) << Driver::<T>::BYTE_SHIFT)
     }
 
     pub unsafe fn get_peripheral_bit(address: u32, index: u8) -> bool {

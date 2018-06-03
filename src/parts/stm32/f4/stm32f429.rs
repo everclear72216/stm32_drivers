@@ -58,12 +58,12 @@ impl RccCfgrSw for Stm32F429 {
 
 impl PeripheralBitbanding for Stm32F429 {
     const PERIPHERAL_BITBAND: Range = Range {
-        start: 0x2000_0000,
-        end: 0x2200_0000,
+        start: 0x4000_0000,
+        end: 0x400F_FFFF,
     };
 
     const PERIPHERAL_ALIAS: Range = Range {
-        start: 0x4000_0000,
-        end: 0x4200_0000,
+        start: 0x4200_0000,
+        end: 0x43FF_FFE0,
     };
 }
