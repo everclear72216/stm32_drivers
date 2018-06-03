@@ -14,6 +14,8 @@ impl Stm32F439Trait for Stm32F439 {}
 
 impl Rcc for Stm32F439 {
     const RCC: u32 = 0x4002_3800;
+    const RCC_CR_RESET_VALUE: u32 = 0x0000_0083;
+    const RCC_CFGR_RESET_VALUE: u32 = 0x0000_0000;
 }
 
 impl RccCrHsi for Stm32F439 {

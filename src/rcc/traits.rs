@@ -1,5 +1,9 @@
 pub trait Rcc {
     const RCC: u32;
+    const RCC_CR_RESET_VALUE: u32;
+    const RCC_CFGR_RESET_VALUE: u32;
+    const RCC_PLLCFGR_RESET_VALUE: u32;
+    const RCC_CIR_RESET_VALUE: u32;
 }
 
 pub trait RccCrHsi {
@@ -34,6 +38,16 @@ pub trait RccCrPllI2s {
 pub trait RccCrPllSai {
     const RCC_CR_PLLSAION_BIT: u8;
     const RCC_CR_PLLSAIRDY_BIT: u8;
+}
+
+pub trait RccCfgrSw {
+    const RCC_CFGR_SW_MASK: u32;
+    const RCC_CFGR_SW_OFFS: u8;
+    const RCC_CFGR_SWS_MASK: u32;
+    const RCC_CFGR_SWS_OFFS: u8;
+    const RCC_CFGR_SW_SWS_HSI: u32;
+    const RCC_CFGR_SW_SWS_HSE: u32;
+    const RCC_CFGR_SW_SWS_PLL: u32;
 }
 
 pub struct InternalClock {
