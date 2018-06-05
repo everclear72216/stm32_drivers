@@ -1,12 +1,12 @@
 use rcc::driver::Driver;
 
-use rcc::traits::ClockKind;
 use rcc::traits::Rcc;
-use rcc::traits::RccCfgrSw;
 use rcc::traits::RccCrCss;
 use rcc::traits::RccCrHse;
 use rcc::traits::RccCrHsi;
 use rcc::traits::RccCrPll;
+use rcc::traits::RccCfgrSw;
+use rcc::traits::ClockKind;
 use rcc::traits::SystemClock;
 
 use bitbanding::driver::peripheral::Driver as BB;
@@ -43,5 +43,19 @@ impl SystemClock for Driver<Stm32F429> {
         self.rcc.cir.set(Stm32F429::RCC_CIR_RESET_VALUE);
     }
 
-    unsafe fn system_clock_init(&mut self, clock: &ClockKind) -> () {}
+    unsafe fn system_clock_init(&mut self, clock: &ClockKind) -> () {
+        let rcc_cr_addr = self.rcc.cr.get_addr();
+        match clock {
+            ClockKind::Hse(ext_clock) => {
+                // enable the external high speed oscillator
+                BB::<Stm32F429>::set_peripheral_bit(rcc_cr_addr, Stm32F429::RCC_CR_HSEON_BIT);
+                // wait for external high speed oscillator to become ready
+                while BB::<Stm32F429>::get_peripheral_bit(rcc_cr_addr, Stm32F429::RCC_CR_HSERDY_BIT) {}
+                
+            }
+            ClockKind::Hsi(_int_clock) => {
+
+            }
+        }
+    }
 }

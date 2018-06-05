@@ -1,3 +1,5 @@
+use pwr::Pwr;
+
 use rcc::traits::Rcc;
 use rcc::traits::RccCfgrSw;
 use rcc::traits::RccCrCss;
@@ -13,6 +15,12 @@ use parts::stm32::f4::Stm32F429 as Stm32F429Trait;
 pub struct Stm32F429 {}
 
 impl Stm32F429Trait for Stm32F429 {}
+
+impl Pwr for Stm32F429 {
+    const PWR: u32 = 0x4000_7000;
+    const PWR_CR_RESET_VALUE: u32 = 0x0000_0000;
+    const PWR_CSR_RESET_VALUE: u32 = 0x0000_0000;
+}
 
 impl Rcc for Stm32F429 {
     const RCC: u32 = 0x4002_3800;
